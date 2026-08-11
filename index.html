@@ -6,12 +6,12 @@
 <title>Fear Reality - Official Site</title>
 
 <!-- Favicon: PLACEHOLDER until you grab the direct i.imgur.com/xxxx.png link from your album -->
-<link rel="icon" type="image/png" href="https://imgur.com/gallery/link-0gewgQ9">
-<!--
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/redvr777/Fear-reality/main/Fear_Reality_Title_text_NEW.png">
+
 <!-- Discord / OG embed -->
 <meta property="og:title" content="Fear Reality">
 <meta property="og:description" content="Official site for Fear Reality. Join the Discord, watch the trailers, see the screenshots.">
-<meta property="og:image" content="https://imgur.com/gallery/link-0gewgQ9">
+<meta property="og:image" content="https://raw.githubusercontent.com/redvr777/Fear-reality/main/Fear_Reality_Title_text_NEW.png">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#7a0000">
 
@@ -160,8 +160,149 @@
     color: #c9c9c9;
     font-family: "Courier New", monospace;
   }
-  .xp-menubar span { padding: 1px 4px; }
-  .xp-menubar span:hover { background: #7a1414; color: #fff; border-radius: 2px; }
+  .xp-menubar span { padding: 1px 4px; cursor: pointer; position: relative; }
+  .xp-menubar span:hover, .xp-menubar span.active { background: #7a1414; color: #fff; border-radius: 2px; }
+
+  /* ===== Dropdown menus ===== */
+  .xp-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 190px;
+    background: #1c1c1c;
+    border: 1px solid #4a0808;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+    z-index: 200;
+    padding: 3px 0;
+    font-family: "Courier New", monospace;
+    display: none;
+  }
+  .xp-dropdown.open { display: block; }
+  .xp-dropdown .item {
+    padding: 5px 14px;
+    font-size: 12px;
+    color: #ddd;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .xp-dropdown .item:hover { background: #7a1414; color: #fff; }
+  .xp-dropdown .sep { height: 1px; background: #3a0505; margin: 3px 0; }
+
+  /* ===== Modal (XP message box) ===== */
+  .xp-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+  }
+  .xp-modal-overlay.open { display: flex; }
+  .xp-modal {
+    width: 340px;
+    max-width: 90vw;
+    background: #1c1c1c;
+    border: 1px solid #4a0808;
+    border-radius: 6px;
+    box-shadow: 4px 4px 18px rgba(0,0,0,0.8);
+    overflow: hidden;
+  }
+  .xp-modal .xp-titlebar { border-radius: 6px 6px 0 0; }
+  .xp-modal-body {
+    padding: 18px 16px;
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    color: #ddd;
+    line-height: 1.6;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .xp-modal-body .glyph {
+    font-size: 26px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .xp-modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 16px 16px 16px;
+  }
+  .xp-modal-actions button {
+    font-family: Tahoma, sans-serif;
+    font-size: 12px;
+    padding: 5px 18px;
+    background: linear-gradient(180deg,#5a1414,#1a0303);
+    border: 1px solid #000;
+    border-radius: 3px;
+    color: #eee;
+    cursor: pointer;
+  }
+  .xp-modal-actions button:hover { background: linear-gradient(180deg,#7a1414,#2a0505); border-color: #ff2b2b; }
+
+  /* ===== CRT / static toggle (View menu easter egg) ===== */
+  body.crt-on::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,0.18) 0px,
+      rgba(0,0,0,0.18) 1px,
+      transparent 2px,
+      transparent 4px
+    );
+    mix-blend-mode: multiply;
+    animation: crtflicker 6s infinite;
+  }
+  @keyframes crtflicker {
+    0%, 96%, 100% { opacity: 1; }
+    97% { opacity: 0.75; }
+    98% { opacity: 1; }
+  }
+
+  .glitch-overlay {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    color: #ff2b2b;
+    font-family: "Courier New", monospace;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 900;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+  .glitch-overlay.show { display: flex; }
+
+  .xp-toast {
+    position: fixed;
+    bottom: 46px;
+    right: 16px;
+    background: #1c1c1c;
+    border: 1px solid #4a0808;
+    color: #ddd;
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    padding: 10px 14px;
+    border-radius: 4px;
+    box-shadow: 3px 3px 12px rgba(0,0,0,0.7);
+    z-index: 600;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+    max-width: 260px;
+  }
+  .xp-toast.show { opacity: 1; transform: translateY(0); }
 
   .xp-body {
     background: #111;
@@ -417,7 +558,7 @@
       </div>
     </div>
     <div class="xp-menubar">
-      <span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Help</span>
+      <span class="menu-trigger" data-menu="file">File</span><span class="menu-trigger" data-menu="edit">Edit</span><span class="menu-trigger" data-menu="view">View</span><span class="menu-trigger" data-menu="favorites">Favorites</span><span class="menu-trigger" data-menu="help">Help</span>
     </div>
     <div class="hero-body">
       <h2>WELCOME TO FEAR REALITY</h2>
@@ -449,7 +590,7 @@
       </div>
     </div>
     <div class="xp-menubar">
-      <span>File</span><span>Edit</span><span>View</span><span>Tools</span><span>Help</span>
+      <span class="menu-trigger" data-menu="file">File</span><span class="menu-trigger" data-menu="edit">Edit</span><span class="menu-trigger" data-menu="view">View</span><span class="menu-trigger" data-menu="tools">Tools</span><span class="menu-trigger" data-menu="help">Help</span>
     </div>
     <div class="xp-body tan">
       <div class="gallery-grid">
@@ -491,7 +632,7 @@
       </div>
     </div>
     <div class="xp-menubar">
-      <span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Help</span>
+      <span class="menu-trigger" data-menu="file">File</span><span class="menu-trigger" data-menu="edit">Edit</span><span class="menu-trigger" data-menu="view">View</span><span class="menu-trigger" data-menu="favorites">Favorites</span><span class="menu-trigger" data-menu="help">Help</span>
     </div>
     <div class="socials-body">
       <a class="social-btn" href="https://discord.gg/MtNjfam7x" target="_blank" rel="noopener">
