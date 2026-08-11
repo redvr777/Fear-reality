@@ -5,10 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fear Reality - Official Site</title>
 
-<!-- Favicon: PLACEHOLDER until you grab the direct i.imgur.com/xxxx.png link from your album -->
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/redvr777/Fear-reality/main/Fear_Reality_Title_text_NEW.png">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/redvr777/Fear-reality/main/lightfear.png">
 
-<!-- Discord / OG embed -->
 <meta property="og:title" content="Fear Reality">
 <meta property="og:description" content="Official site for Fear Reality. Join the Discord, watch the trailers, see the screenshots.">
 <meta property="og:image" content="https://raw.githubusercontent.com/redvr777/Fear-reality/main/Fear_Reality_Title_text_NEW.png">
@@ -29,7 +27,6 @@
     overflow-x: hidden;
   }
 
-  /* subtle darken overlay so windows are readable over the wallpaper */
   #desktop {
     min-height: 100vh;
     width: 100%;
@@ -40,7 +37,6 @@
     align-items: center;
   }
 
-  /* ===== Top header - small, just the game name, no logo image ===== */
   .site-header {
     width: 100%;
     max-width: 780px;
@@ -64,7 +60,6 @@
     margin-top: 2px;
   }
 
-  /* ===== Desktop icons (top-left, classic XP style) ===== */
   .desktop-icons {
     position: fixed;
     top: 16px;
@@ -100,7 +95,6 @@
     outline: 1px dotted #fff;
   }
 
-  /* ===== XP Window chrome ===== */
   .xp-window {
     width: 100%;
     max-width: 780px;
@@ -160,10 +154,9 @@
     color: #c9c9c9;
     font-family: "Courier New", monospace;
   }
-  .xp-menubar span { padding: 1px 4px; cursor: pointer; position: relative; }
-  .xp-menubar span:hover, .xp-menubar span.active { background: #7a1414; color: #fff; border-radius: 2px; }
+  .xp-menubar span.menu-trigger { padding: 1px 4px; cursor: pointer; position: relative; }
+  .xp-menubar span.menu-trigger:hover, .xp-menubar span.menu-trigger.active { background: #7a1414; color: #fff; border-radius: 2px; }
 
-  /* ===== Dropdown menus ===== */
   .xp-dropdown {
     position: absolute;
     top: 100%;
@@ -188,7 +181,6 @@
   .xp-dropdown .item:hover { background: #7a1414; color: #fff; }
   .xp-dropdown .sep { height: 1px; background: #3a0505; margin: 3px 0; }
 
-  /* ===== Modal (XP message box) ===== */
   .xp-modal-overlay {
     position: fixed;
     inset: 0;
@@ -242,7 +234,23 @@
   }
   .xp-modal-actions button:hover { background: linear-gradient(180deg,#7a1414,#2a0505); border-color: #ff2b2b; }
 
-  /* ===== CRT / static toggle (View menu easter egg) ===== */
+  .xp-modal-field {
+    padding: 0 16px 14px 16px;
+    font-family: "Courier New", monospace;
+    font-size: 11px;
+    color: #bbb;
+  }
+  .xp-modal-field label { display: block; margin-bottom: 4px; }
+  .xp-modal-field input, .xp-modal-field select {
+    width: 100%;
+    background: #0d0d0d;
+    border: 1px inset #4a0808;
+    color: #ddd;
+    padding: 4px 6px;
+    font-family: "Courier New", monospace;
+    font-size: 11px;
+  }
+
   body.crt-on::after {
     content: "";
     position: fixed;
@@ -264,24 +272,6 @@
     97% { opacity: 0.75; }
     98% { opacity: 1; }
   }
-
-  .glitch-overlay {
-    position: fixed;
-    inset: 0;
-    background: #000;
-    color: #ff2b2b;
-    font-family: "Courier New", monospace;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 8px;
-    z-index: 900;
-    text-align: center;
-    font-size: 14px;
-    letter-spacing: 2px;
-  }
-  .glitch-overlay.show { display: flex; }
 
   .xp-toast {
     position: fixed;
@@ -313,7 +303,6 @@
   }
   .xp-body.tan { background: #1c1c1c; }
 
-  /* ===== Hero window content ===== */
   .hero-body {
     text-align: center;
     background: #111;
@@ -334,7 +323,6 @@
     font-family: "Courier New", monospace;
   }
 
-  /* ===== Gallery ===== */
   .gallery-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -360,7 +348,6 @@
     border-top: 1px solid #4a0808;
   }
 
-  /* ===== Links / buttons list ===== */
   .status-bar {
     background: #2a2a2a;
     border-top: 1px solid #000;
@@ -405,7 +392,6 @@
     font-weight: bold;
   }
 
-  /* ===== Socials footer window ===== */
   .socials-footer {
     width: 100%;
     max-width: 780px;
@@ -449,7 +435,6 @@
     letter-spacing: 1px;
   }
 
-  /* ===== Taskbar ===== */
   .taskbar {
     position: fixed;
     bottom: 0;
@@ -544,7 +529,6 @@
     <div class="sub">// official_site.exe</div>
   </div>
 
-  <!-- ABOUT / MAIN WINDOW -->
   <div class="xp-window" id="about" style="max-width: 640px;">
     <div class="xp-titlebar">
       <div class="ttl">
@@ -576,7 +560,6 @@
     </div>
   </div>
 
-  <!-- GALLERY WINDOW -->
   <div class="xp-window" id="gallery">
     <div class="xp-titlebar">
       <div class="ttl">
@@ -618,7 +601,6 @@
     </div>
   </div>
 
-  <!-- SOCIALS FOOTER WINDOW -->
   <div class="xp-window socials-footer" id="links">
     <div class="xp-titlebar">
       <div class="ttl">
@@ -662,7 +644,52 @@
 
 </div>
 
-<!-- TASKBAR -->
+<div class="xp-modal-overlay" id="genericModalOverlay">
+  <div class="xp-modal">
+    <div class="xp-titlebar">
+      <div class="ttl"><span id="genericModalTitle">Fear Reality</span></div>
+      <div class="xp-controls">
+        <div class="btn" id="genericModalClose">✕</div>
+      </div>
+    </div>
+    <div class="xp-modal-body">
+      <div class="glyph" id="genericModalGlyph">💀</div>
+      <div id="genericModalText">...</div>
+    </div>
+    <div class="xp-modal-actions">
+      <button id="genericModalOk">OK</button>
+    </div>
+  </div>
+</div>
+
+<div class="xp-modal-overlay" id="saveAsOverlay">
+  <div class="xp-modal">
+    <div class="xp-titlebar">
+      <div class="ttl"><span>Save As</span></div>
+      <div class="xp-controls">
+        <div class="btn" id="saveAsClose">✕</div>
+      </div>
+    </div>
+    <div class="xp-modal-field">
+      <label for="saveAsName">File name:</label>
+      <input type="text" id="saveAsName" value="fear_reality.exe">
+    </div>
+    <div class="xp-modal-field">
+      <label for="saveAsType">Save as type:</label>
+      <select id="saveAsType">
+        <option>Application (*.exe)</option>
+        <option>All Files (*.*)</option>
+      </select>
+    </div>
+    <div class="xp-modal-actions">
+      <button id="saveAsSave">Save</button>
+      <button id="saveAsCancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="xp-toast" id="xpToast"></div>
+
 <div class="taskbar">
   <div class="start-btn">
     <svg class="xp-logo" viewBox="0 0 20 20"><rect x="1" y="1" width="8" height="8" fill="#ff2b2b"/><rect x="11" y="1" width="8" height="8" fill="#8a8a8a"/><rect x="1" y="11" width="8" height="8" fill="#8a8a8a"/><rect x="11" y="11" width="8" height="8" fill="#ff2b2b"/></svg>
@@ -687,6 +714,140 @@
   }
   updateClock();
   setInterval(updateClock, 1000 * 30);
+
+  const DISCORD_URL = 'https://discord.gg/MtNjfam7x';
+  const YOUTUBE_URL = 'https://youtube.com/@fearreality_game?si=Xro1Gai5BVxkLs5V';
+  const TIKTOK_URL = 'https://www.tiktok.com/@fearrealityofficial?_r=1&_t=ZS-98mSTFHvcmr';
+
+  const menuData = {
+    file: [
+      { label: 'New', action: 'new' },
+      { label: 'Open...', action: 'toast:There is nothing else to open.' },
+      { sep: true },
+      { label: 'Save As...', action: 'saveas' },
+      { sep: true },
+      { label: 'Exit', action: 'toast:You cannot exit.' }
+    ],
+    edit: [
+      { label: 'Cut', action: 'toast:Nothing selected.' },
+      { label: 'Copy', action: 'toast:Nothing selected.' },
+      { label: 'Paste', action: 'toast:Clipboard is empty.' },
+      { sep: true },
+      { label: 'Select All', action: 'toast:There is nothing to select.' }
+    ],
+    view: [
+      { label: 'TikTok', action: 'link:' + TIKTOK_URL },
+      { label: 'YouTube', action: 'link:' + YOUTUBE_URL }
+    ],
+    favorites: [
+      { label: 'Discord', action: 'link:' + DISCORD_URL },
+      { label: 'YouTube', action: 'link:' + YOUTUBE_URL },
+      { label: 'TikTok', action: 'link:' + TIKTOK_URL }
+    ],
+    help: [
+      { label: 'Join our Discord', action: 'link:' + DISCORD_URL }
+    ],
+    tools: [
+      { label: 'Options...', action: 'toast:No options available.' }
+    ]
+  };
+
+  function buildDropdown(menuKey) {
+    const items = menuData[menuKey] || menuData.edit;
+    const dropdown = document.createElement('div');
+    dropdown.className = 'xp-dropdown';
+    items.forEach(it => {
+      if (it.sep) {
+        const sep = document.createElement('div');
+        sep.className = 'sep';
+        dropdown.appendChild(sep);
+      } else {
+        const el = document.createElement('div');
+        el.className = 'item';
+        el.dataset.action = it.action;
+        el.textContent = it.label;
+        dropdown.appendChild(el);
+      }
+    });
+    return dropdown;
+  }
+
+  document.querySelectorAll('.menu-trigger').forEach(trigger => {
+    const dropdown = buildDropdown(trigger.dataset.menu);
+    trigger.appendChild(dropdown);
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const wasOpen = dropdown.classList.contains('open');
+      document.querySelectorAll('.xp-dropdown.open').forEach(d => d.classList.remove('open'));
+      document.querySelectorAll('.menu-trigger.active').forEach(t => t.classList.remove('active'));
+      if (!wasOpen) {
+        dropdown.classList.add('open');
+        trigger.classList.add('active');
+      }
+    });
+  });
+
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.xp-dropdown.open').forEach(d => d.classList.remove('open'));
+    document.querySelectorAll('.menu-trigger.active').forEach(t => t.classList.remove('active'));
+  });
+
+  function showToast(text) {
+    const toast = document.getElementById('xpToast');
+    toast.textContent = text;
+    toast.classList.add('show');
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => toast.classList.remove('show'), 2600);
+  }
+
+  function openGenericModal(title, text) {
+    document.getElementById('genericModalTitle').textContent = title;
+    document.getElementById('genericModalText').textContent = text;
+    document.getElementById('genericModalOverlay').classList.add('open');
+  }
+
+  function closeGenericModal() {
+    document.getElementById('genericModalOverlay').classList.remove('open');
+  }
+
+  document.getElementById('genericModalClose').addEventListener('click', closeGenericModal);
+  document.getElementById('genericModalOk').addEventListener('click', closeGenericModal);
+  document.getElementById('genericModalOverlay').addEventListener('click', (e) => {
+    if (e.target.id === 'genericModalOverlay') closeGenericModal();
+  });
+
+  function openSaveAsModal() {
+    document.getElementById('saveAsOverlay').classList.add('open');
+  }
+
+  function closeSaveAsModal() {
+    document.getElementById('saveAsOverlay').classList.remove('open');
+  }
+
+  document.getElementById('saveAsClose').addEventListener('click', closeSaveAsModal);
+  document.getElementById('saveAsCancel').addEventListener('click', closeSaveAsModal);
+  document.getElementById('saveAsOverlay').addEventListener('click', (e) => {
+    if (e.target.id === 'saveAsOverlay') closeSaveAsModal();
+  });
+  document.getElementById('saveAsSave').addEventListener('click', () => {
+    closeSaveAsModal();
+    window.open(DISCORD_URL, '_blank');
+  });
+
+  document.addEventListener('click', (e) => {
+    const item = e.target.closest('.xp-dropdown .item');
+    if (!item) return;
+    const action = item.dataset.action;
+    if (action === 'new') {
+      location.reload();
+    } else if (action === 'saveas') {
+      openSaveAsModal();
+    } else if (action.startsWith('link:')) {
+      window.open(action.slice(5), '_blank');
+    } else if (action.startsWith('toast:')) {
+      showToast(action.slice(6));
+    }
+  });
 </script>
 
 </body>
