@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -14,542 +15,684 @@
 <meta name="theme-color" content="#7a0000">
 
 <style>
-  * { box-sizing: border-box; }
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: Tahoma, "MS Sans Serif", Arial, sans-serif;
-    background-image: url('https://raw.githubusercontent.com/redvr777/Fear-reality/main/FearRealityOfficialPic_2.png');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    overflow-x: hidden;
-  }
+* {
+  box-sizing: border-box;
+}
 
-  #desktop {
-    min-height: 100vh;
-    width: 100%;
-    padding: 30px 24px 30px 24px;
-    background: rgba(0,0,0,0.35);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Tahoma, "MS Sans Serif", Arial, sans-serif;
+  background-image: url('https://raw.githubusercontent.com/redvr777/Fear-reality/main/FearRealityOfficialPic_2.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
 
-  .site-header {
-    width: 100%;
-    max-width: 780px;
-    text-align: center;
-    margin-bottom: 18px;
-  }
-  .site-header h1 {
-    margin: 0;
-    font-family: "Courier New", monospace;
-    font-size: 26px;
-    letter-spacing: 3px;
-    color: #d40000;
-    text-shadow: 0 0 6px #ff0000, 0 0 14px #7a0000, 2px 2px 0 #000;
-  }
-  .site-header .sub {
-    font-family: "Courier New", monospace;
-    font-size: 11px;
-    color: #ccc;
-    letter-spacing: 2px;
-    text-shadow: 1px 1px 2px #000;
-    margin-top: 2px;
+#desktop {
+  min-height: 100vh;
+  width: 100%;
+  padding: 30px 24px 50px 24px;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.site-header {
+  width: 100%;
+  max-width: 780px;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-family: "Courier New", monospace;
+  font-size: 26px;
+  letter-spacing: 3px;
+  color: #d40000;
+  text-shadow: 0 0 6px #ff0000, 0 0 14px #7a0000, 2px 2px 0 #000;
+}
+
+.site-header .sub {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  color: #ccc;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 2px #000;
+  margin-top: 2px;
+}
+
+.desktop-icons {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  z-index: 5;
+}
+
+.d-icon {
+  width: 76px;
+  text-align: center;
+  color: #fff;
+  text-shadow: 1px 1px 2px #000;
+  font-size: 11px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.d-icon img {
+  width: 40px;
+  height: 40px;
+  display: block;
+  margin: 0 auto 4px auto;
+  filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.6));
+}
+
+.d-icon span {
+  background: rgba(0,0,0,0);
+  padding: 1px 3px;
+  font-family: "Courier New", monospace;
+}
+
+.d-icon:hover span {
+  background: #7a1414;
+  outline: 1px dotted #fff;
+}
+
+.xp-window {
+  width: 100%;
+  max-width: 780px;
+  margin: 14px 0;
+  border: 1px solid #3a0000;
+  border-radius: 8px 8px 3px 3px;
+  box-shadow: 3px 3px 14px rgba(0,0,0,0.75);
+  background: #1c1c1c;
+  overflow: hidden;
+}
+
+.xp-titlebar {
+  background: linear-gradient(180deg, #6e0f0f 0%, #4a0808 4%, #2e0303 8%, #260202 40%, #430707 60%, #7a1414 88%, #8f1a1a 92%, #4a0808 100%);
+  color: #fff;
+  font-weight: bold;
+  font-size: 13px;
+  padding: 4px 4px 5px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.8), 0 0 6px rgba(255,0,0,0.4);
+  border-radius: 6px 6px 0 0;
+}
+
+.xp-titlebar .ttl {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: "Courier New", monospace;
+  letter-spacing: 0.5px;
+}
+
+.xp-titlebar .ttl img {
+  width: 16px;
+  height: 16px;
+}
+
+.xp-controls {
+  display: flex;
+  gap: 3px;
+}
+
+.xp-controls .btn {
+  width: 21px;
+  height: 20px;
+  background: linear-gradient(180deg,#5a1414,#1a0303);
+  border: 1px solid #000;
+  border-radius: 3px;
+  color: #ddd;
+  font-size: 11px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
+  cursor: pointer;
+}
+
+.xp-controls .close {
+  background: linear-gradient(180deg,#ff4d3d,#b30f00);
+  border-color: #4a0000;
+}
+
+.xp-menubar {
+  background: #2a2a2a;
+  border-bottom: 1px solid #000;
+  padding: 3px 6px;
+  font-size: 11px;
+  display: flex;
+  gap: 14px;
+  color: #c9c9c9;
+  font-family: "Courier New", monospace;
+}
+
+.xp-menubar span.menu-trigger {
+  padding: 1px 4px;
+  cursor: pointer;
+  position: relative;
+}
+
+.xp-menubar span.menu-trigger:hover,
+.xp-menubar span.menu-trigger.active {
+  background: #7a1414;
+  color: #fff;
+  border-radius: 2px;
+}
+
+.xp-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 190px;
+  background: #1c1c1c;
+  border: 1px solid #4a0808;
+  box-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+  z-index: 200;
+  padding: 3px 0;
+  font-family: "Courier New", monospace;
+  display: none;
+}
+
+.xp-dropdown.open {
+  display: block;
+}
+
+.xp-dropdown .item {
+  padding: 5px 14px;
+  font-size: 12px;
+  color: #ddd;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.xp-dropdown .item:hover {
+  background: #7a1414;
+  color: #fff;
+}
+
+.xp-dropdown .sep {
+  height: 1px;
+  background: #3a0505;
+  margin: 3px 0;
+}
+
+.xp-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+}
+
+.xp-modal-overlay.open {
+  display: flex;
+}
+
+.xp-modal {
+  width: 340px;
+  max-width: 90vw;
+  background: #1c1c1c;
+  border: 1px solid #4a0808;
+  border-radius: 6px;
+  box-shadow: 4px 4px 18px rgba(0,0,0,0.8);
+  overflow: hidden;
+}
+
+.xp-modal .xp-titlebar {
+  border-radius: 6px 6px 0 0;
+}
+
+.xp-modal-body {
+  padding: 18px 16px;
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  color: #ddd;
+  line-height: 1.6;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.xp-modal-body .glyph {
+  font-size: 26px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.xp-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 16px 16px 16px;
+}
+
+.xp-modal-actions button {
+  font-family: Tahoma, sans-serif;
+  font-size: 12px;
+  padding: 5px 18px;
+  background: linear-gradient(180deg,#5a1414,#1a0303);
+  border: 1px solid #000;
+  border-radius: 3px;
+  color: #eee;
+  cursor: pointer;
+}
+
+.xp-modal-actions button:hover {
+  background: linear-gradient(180deg,#7a1414,#2a0505);
+  border-color: #ff2b2b;
+}
+
+.xp-modal-field {
+  padding: 0 16px 14px 16px;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  color: #bbb;
+}
+
+.xp-modal-field label {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.xp-modal-field input,
+.xp-modal-field select {
+  width: 100%;
+  background: #0d0d0d;
+  border: 1px inset #4a0808;
+  color: #ddd;
+  padding: 4px 6px;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+}
+
+body.crt-on::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0.18) 0px,
+    rgba(0,0,0,0.18) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  mix-blend-mode: multiply;
+  animation: crtflicker 6s infinite;
+}
+
+@keyframes crtflicker {
+  0%, 96%, 100% { opacity: 1; }
+  97% { opacity: 0.75; }
+  98% { opacity: 1; }
+}
+
+.xp-toast {
+  position: fixed;
+  bottom: 46px;
+  right: 16px;
+  background: #1c1c1c;
+  border: 1px solid #4a0808;
+  color: #ddd;
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  padding: 10px 14px;
+  border-radius: 4px;
+  box-shadow: 3px 3px 12px rgba(0,0,0,0.7);
+  z-index: 600;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+  max-width: 260px;
+}
+
+.xp-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.xp-body {
+  background: #111;
+  padding: 16px;
+  color: #d8d8d8;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.xp-body.tan {
+  background: #1c1c1c;
+}
+
+.hero-body {
+  text-align: center;
+  background: #111;
+  padding: 22px 18px;
+}
+
+.hero-body h2 {
+  font-family: "Courier New", monospace;
+  color: #ff2b2b;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px rgba(255,0,0,0.6);
+  margin: 0 0 6px 0;
+}
+
+.hero-tagline {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #aaa;
+  font-family: "Courier New", monospace;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.gallery-item {
+  border: 2px inset #4a0808;
+  background: #000;
+  padding: 3px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gallery-caption {
+  background: #2a2a2a;
+  color: #bbb;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  text-align: center;
+  padding: 2px 0;
+  border-top: 1px solid #4a0808;
+}
+
+.status-bar {
+  background: #2a2a2a;
+  border-top: 1px solid #000;
+  font-size: 11px;
+  padding: 3px 8px;
+  color: #999;
+  font-family: "Courier New", monospace;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-bar .cell {
+  border: 1px inset #4a0808;
+  padding: 1px 8px;
+}
+
+marquee {
+  background: #000;
+  color: #ff2b2b;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  padding: 4px 0;
+  border: 1px inset #4a0808;
+  text-shadow: 0 0 4px rgba(255,0,0,0.7);
+}
+
+.blink {
+  animation: blinker 1s step-start infinite;
+}
+
+@keyframes blinker {
+  50% { opacity: 0; }
+}
+
+.visitor-counter {
+  display: inline-flex;
+  background: #000;
+  border: 2px inset #4a0808;
+  padding: 3px 6px;
+  gap: 2px;
+  font-family: "Courier New", monospace;
+}
+
+.visitor-counter span {
+  background: #1a0000;
+  color: #ff2b2b;
+  padding: 1px 4px;
+  font-weight: bold;
+}
+
+.socials-footer {
+  width: 100%;
+  max-width: 780px;
+  margin: 10px 0 20px 0;
+}
+
+.socials-body {
+  background: #111;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  padding: 20px 16px;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  width: 110px;
+  padding: 10px 8px;
+  background: linear-gradient(180deg,#2a2a2a,#141414);
+  border: 1px solid #4a0808;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.social-btn:hover {
+  background: linear-gradient(180deg,#3a0f0f,#1a0303);
+  border-color: #ff2b2b;
+  box-shadow: 0 0 8px rgba(255,0,0,0.4);
+}
+
+.social-btn img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.social-btn span {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  color: #ddd;
+  letter-spacing: 1px;
+}
+
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 34px;
+  background: linear-gradient(180deg, #4a0808 0%, #2e0303 8%, #1a0101 50%, #0d0000 92%, #000 100%);
+  border-top: 1px solid #7a1414;
+  display: flex;
+  align-items: center;
+  z-index: 50;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.6);
+}
+
+.start-btn {
+  height: 26px;
+  margin: 3px 4px;
+  padding: 0 14px 0 6px;
+  background: linear-gradient(180deg,#c92626,#7a0f0f 45%,#5c0a0a 55%,#3a0505);
+  border-radius: 0 12px 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 15px;
+  font-family: "Courier New", monospace;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
+  box-shadow: 0 0 0 1px #3a0505, inset 0 1px 0 rgba(255,255,255,0.3);
+  cursor: pointer;
+}
+
+.start-btn .xp-logo {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+
+.taskbar-divider {
+  width: 2px;
+  height: 24px;
+  background: rgba(255,255,255,0.15);
+  box-shadow: 1px 0 0 rgba(0,0,0,0.4);
+  margin: 0 4px;
+}
+
+.taskbar-item {
+  height: 26px;
+  margin: 3px 2px;
+  padding: 0 10px;
+  background: linear-gradient(180deg,#5c1414,#2a0505);
+  border: 1px solid #1a0000;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #eee;
+  font-size: 12px;
+  font-family: "Courier New", monospace;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+  cursor: pointer;
+}
+
+.taskbar-item.active {
+  background: linear-gradient(180deg,#2a0505,#1a0101);
+  box-shadow: inset 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+.tray {
+  margin-left: auto;
+  margin-right: 8px;
+  background: linear-gradient(180deg,#3a0808,#180202);
+  border-radius: 3px 0 0 3px;
+  color: #ddd;
+  font-size: 11px;
+  font-family: "Courier New", monospace;
+  padding: 4px 10px;
+  display: flex;
+  align-items: center;
+  height: 26px;
+  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.start-dropdown {
+  position: fixed;
+  bottom: 34px;
+  left: 4px;
+  min-width: 210px;
+  background: #1c1c1c;
+  border: 1px solid #4a0808;
+  box-shadow: 3px 3px 12px rgba(0,0,0,0.75);
+  z-index: 200;
+  padding: 4px 0;
+  font-family: "Courier New", monospace;
+  display: none;
+}
+
+.start-dropdown.open {
+  display: block;
+}
+
+.start-dropdown .item {
+  padding: 6px 16px;
+  font-size: 12px;
+  color: #ddd;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.start-dropdown .item:hover {
+  background: #7a1414;
+  color: #fff;
+}
+
+.start-dropdown .sep {
+  height: 1px;
+  background: #3a0505;
+  margin: 4px 0;
+}
+
+@media (max-width: 600px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
   }
 
   .desktop-icons {
-    position: fixed;
-    top: 16px;
-    left: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    z-index: 5;
-  }
-  .d-icon {
-    width: 76px;
-    text-align: center;
-    color: #fff;
-    text-shadow: 1px 1px 2px #000;
-    font-size: 11px;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  .d-icon img {
-    width: 40px;
-    height: 40px;
-    display: block;
-    margin: 0 auto 4px auto;
-    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.6));
-  }
-  .d-icon span {
-    background: rgba(0,0,0,0);
-    padding: 1px 3px;
-    font-family: "Courier New", monospace;
-  }
-  .d-icon:hover span {
-    background: #7a1414;
-    outline: 1px dotted #fff;
-  }
-
-  .xp-window {
-    width: 100%;
-    max-width: 780px;
-    margin: 14px 0;
-    border: 1px solid #3a0000;
-    border-radius: 8px 8px 3px 3px;
-    box-shadow: 3px 3px 14px rgba(0,0,0,0.75);
-    background: #1c1c1c;
-    overflow: hidden;
-  }
-  .xp-titlebar {
-    background: linear-gradient(180deg, #6e0f0f 0%, #4a0808 4%, #2e0303 8%, #260202 40%, #430707 60%, #7a1414 88%, #8f1a1a 92%, #4a0808 100%);
-    color: #fff;
-    font-weight: bold;
-    font-size: 13px;
-    padding: 4px 4px 5px 8px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.8), 0 0 6px rgba(255,0,0,0.4);
-    border-radius: 6px 6px 0 0;
-  }
-  .xp-titlebar .ttl {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-family: "Courier New", monospace;
-    letter-spacing: 0.5px;
-  }
-  .xp-titlebar .ttl img { width: 16px; height: 16px; }
-  .xp-controls { display: flex; gap: 3px; }
-  .xp-controls .btn {
-    width: 21px; height: 20px;
-    background: linear-gradient(180deg,#5a1414,#1a0303);
-    border: 1px solid #000;
-    border-radius: 3px;
-    color: #ddd;
-    font-size: 11px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
-  }
-  .xp-controls .close { background: linear-gradient(180deg,#ff4d3d,#b30f00); border-color: #4a0000; }
-
-  .xp-menubar {
-    background: #2a2a2a;
-    border-bottom: 1px solid #000;
-    padding: 3px 6px;
-    font-size: 11px;
-    display: flex;
-    gap: 14px;
-    color: #c9c9c9;
-    font-family: "Courier New", monospace;
-  }
-  .xp-menubar span.menu-trigger { padding: 1px 4px; cursor: pointer; position: relative; }
-  .xp-menubar span.menu-trigger:hover, .xp-menubar span.menu-trigger.active { background: #7a1414; color: #fff; border-radius: 2px; }
-
-  .xp-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    min-width: 190px;
-    background: #1c1c1c;
-    border: 1px solid #4a0808;
-    box-shadow: 3px 3px 10px rgba(0,0,0,0.7);
-    z-index: 200;
-    padding: 3px 0;
-    font-family: "Courier New", monospace;
-    display: none;
-  }
-  .xp-dropdown.open { display: block; }
-  .xp-dropdown .item {
-    padding: 5px 14px;
-    font-size: 12px;
-    color: #ddd;
-    white-space: nowrap;
-    cursor: pointer;
-  }
-  .xp-dropdown .item:hover { background: #7a1414; color: #fff; }
-  .xp-dropdown .sep { height: 1px; background: #3a0505; margin: 3px 0; }
-
-  .xp-modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 500;
-  }
-  .xp-modal-overlay.open { display: flex; }
-  .xp-modal {
-    width: 340px;
-    max-width: 90vw;
-    background: #1c1c1c;
-    border: 1px solid #4a0808;
-    border-radius: 6px;
-    box-shadow: 4px 4px 18px rgba(0,0,0,0.8);
-    overflow: hidden;
-  }
-  .xp-modal .xp-titlebar { border-radius: 6px 6px 0 0; }
-  .xp-modal-body {
-    padding: 18px 16px;
-    font-family: "Courier New", monospace;
-    font-size: 12px;
-    color: #ddd;
-    line-height: 1.6;
-    display: flex;
+    top: 8px;
+    left: 8px;
     gap: 12px;
-    align-items: flex-start;
-  }
-  .xp-modal-body .glyph {
-    font-size: 26px;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-  .xp-modal-actions {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    padding: 0 16px 16px 16px;
-  }
-  .xp-modal-actions button {
-    font-family: Tahoma, sans-serif;
-    font-size: 12px;
-    padding: 5px 18px;
-    background: linear-gradient(180deg,#5a1414,#1a0303);
-    border: 1px solid #000;
-    border-radius: 3px;
-    color: #eee;
-    cursor: pointer;
-  }
-  .xp-modal-actions button:hover { background: linear-gradient(180deg,#7a1414,#2a0505); border-color: #ff2b2b; }
-
-  .xp-modal-field {
-    padding: 0 16px 14px 16px;
-    font-family: "Courier New", monospace;
-    font-size: 11px;
-    color: #bbb;
-  }
-  .xp-modal-field label { display: block; margin-bottom: 4px; }
-  .xp-modal-field input, .xp-modal-field select {
-    width: 100%;
-    background: #0d0d0d;
-    border: 1px inset #4a0808;
-    color: #ddd;
-    padding: 4px 6px;
-    font-family: "Courier New", monospace;
-    font-size: 11px;
   }
 
-  body.crt-on::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 999;
-    background: repeating-linear-gradient(
-      0deg,
-      rgba(0,0,0,0.18) 0px,
-      rgba(0,0,0,0.18) 1px,
-      transparent 2px,
-      transparent 4px
-    );
-    mix-blend-mode: multiply;
-    animation: crtflicker 6s infinite;
-  }
-  @keyframes crtflicker {
-    0%, 96%, 100% { opacity: 1; }
-    97% { opacity: 0.75; }
-    98% { opacity: 1; }
+  .d-icon {
+    width: 64px;
   }
 
-  .xp-toast {
-    position: fixed;
-    bottom: 46px;
-    right: 16px;
-    background: #1c1c1c;
-    border: 1px solid #4a0808;
-    color: #ddd;
-    font-family: "Courier New", monospace;
-    font-size: 12px;
-    padding: 10px 14px;
-    border-radius: 4px;
-    box-shadow: 3px 3px 12px rgba(0,0,0,0.7);
-    z-index: 600;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.25s ease, transform 0.25s ease;
-    pointer-events: none;
-    max-width: 260px;
-  }
-  .xp-toast.show { opacity: 1; transform: translateY(0); }
-
-  .xp-body {
-    background: #111;
-    padding: 16px;
-    color: #d8d8d8;
-    font-size: 13px;
-    line-height: 1.5;
-  }
-  .xp-body.tan { background: #1c1c1c; }
-
-  .hero-body {
-    text-align: center;
-    background: #111;
-    padding: 22px 18px;
-  }
-  .hero-body h2 {
-    font-family: "Courier New", monospace;
-    color: #ff2b2b;
-    font-size: 20px;
-    letter-spacing: 2px;
-    text-shadow: 0 0 8px rgba(255,0,0,0.6);
-    margin: 0 0 6px 0;
-  }
-  .hero-tagline {
-    margin-top: 10px;
-    font-size: 13px;
-    color: #aaa;
-    font-family: "Courier New", monospace;
-  }
-
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-  .gallery-item {
-    border: 2px inset #4a0808;
-    background: #000;
-    padding: 3px;
-  }
-  .gallery-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  .gallery-caption {
-    background: #2a2a2a;
-    color: #bbb;
-    font-family: "Courier New", monospace;
-    font-size: 11px;
-    text-align: center;
-    padding: 2px 0;
-    border-top: 1px solid #4a0808;
-  }
-
-  .status-bar {
-    background: #2a2a2a;
-    border-top: 1px solid #000;
-    font-size: 11px;
-    padding: 3px 8px;
-    color: #999;
-    font-family: "Courier New", monospace;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .status-bar .cell {
-    border: 1px inset #4a0808;
-    padding: 1px 8px;
-  }
-
-  marquee {
-    background: #000;
-    color: #ff2b2b;
-    font-family: "Courier New", monospace;
-    font-size: 13px;
-    padding: 4px 0;
-    border: 1px inset #4a0808;
-    text-shadow: 0 0 4px rgba(255,0,0,0.7);
-  }
-
-  .blink { animation: blinker 1s step-start infinite; }
-  @keyframes blinker { 50% { opacity: 0; } }
-
-  .visitor-counter {
-    display: inline-flex;
-    background: #000;
-    border: 2px inset #4a0808;
-    padding: 3px 6px;
-    gap: 2px;
-    font-family: "Courier New", monospace;
-  }
-  .visitor-counter span {
-    background: #1a0000;
-    color: #ff2b2b;
-    padding: 1px 4px;
-    font-weight: bold;
-  }
-
-  .socials-footer {
-    width: 100%;
-    max-width: 780px;
-    margin: 10px 0 20px 0;
-  }
-  .socials-body {
-    background: #111;
-    display: flex;
-    justify-content: center;
-    gap: 18px;
-    padding: 20px 16px;
-    flex-wrap: wrap;
-  }
-  .social-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    width: 110px;
-    padding: 10px 8px;
-    background: linear-gradient(180deg,#2a2a2a,#141414);
-    border: 1px solid #4a0808;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
-  }
-  .social-btn:hover {
-    background: linear-gradient(180deg,#3a0f0f,#1a0303);
-    border-color: #ff2b2b;
-    box-shadow: 0 0 8px rgba(255,0,0,0.4);
-  }
-  .social-btn img {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-  }
-  .social-btn span {
-    font-family: "Courier New", monospace;
-    font-size: 11px;
-    color: #ddd;
-    letter-spacing: 1px;
-  }
-
-  .taskbar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 34px;
-    background: linear-gradient(180deg, #4a0808 0%, #2e0303 8%, #1a0101 50%, #0d0000 92%, #000 100%);
-    border-top: 1px solid #7a1414;
-    display: flex;
-    align-items: center;
-    z-index: 50;
-    box-shadow: 0 -2px 8px rgba(0,0,0,0.6);
-  }
-  .start-btn {
-    height: 26px;
-    margin: 3px 4px;
-    padding: 0 14px 0 6px;
-    background: linear-gradient(180deg,#c92626,#7a0f0f 45%,#5c0a0a 55%,#3a0505);
-    border-radius: 0 12px 12px 0;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    color: #fff;
-    font-weight: bold;
-    font-style: italic;
-    font-size: 15px;
-    font-family: "Courier New", monospace;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
-    box-shadow: 0 0 0 1px #3a0505, inset 0 1px 0 rgba(255,255,255,0.3);
-    cursor: pointer;
-  }
-  .start-btn .xp-logo {
-    width: 20px; height: 20px;
-    display: inline-block;
-  }
-  .taskbar-divider {
-    width: 2px;
-    height: 24px;
-    background: rgba(255,255,255,0.15);
-    box-shadow: 1px 0 0 rgba(0,0,0,0.4);
-    margin: 0 4px;
-  }
   .taskbar-item {
-    height: 26px;
-    margin: 3px 2px;
-    padding: 0 10px;
-    background: linear-gradient(180deg,#5c1414,#2a0505);
-    border: 1px solid #1a0000;
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: #eee;
-    font-size: 12px;
-    font-family: "Courier New", monospace;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
-  }
-  .tray {
-    margin-left: auto;
-    margin-right: 8px;
-    background: linear-gradient(180deg,#3a0808,#180202);
-    border-radius: 3px 0 0 3px;
-    color: #ddd;
-    font-size: 11px;
-    font-family: "Courier New", monospace;
-    padding: 4px 10px;
-    display: flex;
-    align-items: center;
-    height: 26px;
-    box-shadow: inset 1px 1px 2px rgba(0,0,0,0.5);
-  }
-
-  .taskbar-item { cursor: pointer; }
-  .taskbar-item.active {
-    background: linear-gradient(180deg,#2a0505,#1a0101);
-    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.7);
-  }
-
-  .start-dropdown {
-    position: fixed;
-    bottom: 34px;
-    left: 4px;
-    min-width: 210px;
-    background: #1c1c1c;
-    border: 1px solid #4a0808;
-    box-shadow: 3px 3px 12px rgba(0,0,0,0.75);
-    z-index: 200;
-    padding: 4px 0;
-    font-family: "Courier New", monospace;
     display: none;
   }
-  .start-dropdown.open { display: block; }
-  .start-dropdown .item {
-    padding: 6px 16px;
-    font-size: 12px;
-    color: #ddd;
-    white-space: nowrap;
-    cursor: pointer;
-  }
-  .start-dropdown .item:hover { background: #7a1414; color: #fff; }
-  .start-dropdown .sep { height: 1px; background: #3a0505; margin: 4px 0; }
-
-  @media (max-width: 600px) {
-    .gallery-grid { grid-template-columns: 1fr; }
-    .desktop-icons { top: 8px; left: 8px; gap: 12px; }
-    .d-icon { width: 64px; }
-  }
+}
 </style>
+
 </head>
+
 <body>
 
 <div class="desktop-icons">
-  <a class="d-icon" href="#about"><img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/lightfear.png" alt="icon"><span>About.exe</span></a>
-  <a class="d-icon" href="#gallery"><img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/images__4_-removebg-preview.png" alt="icon"><span>Gallery</span></a>
-  <a class="d-icon" href="https://discord.gg/MtNjfam7x" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/images%20%283%29.png" alt="icon"><span>Discord</span></a>
+  <a class="d-icon" href="#about">
+    <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/lightfear.png" alt="icon">
+    <span>About.exe</span>
+  </a>
+
+  <a class="d-icon" href="#gallery">
+    <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/images__4_-removebg-preview.png" alt="icon">
+    <span>Gallery</span>
+  </a>
+
+  <a class="d-icon" href="https://discord.gg/MtNjfam7x" target="_blank" rel="noopener noreferrer">
+    <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/images%20%283%29.png" alt="icon">
+    <span>Discord</span>
+  </a>
 </div>
 
 <div id="desktop">
@@ -565,29 +708,52 @@
         <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/lightfear.png" alt="">
         <span>fear_reality_official.exe</span>
       </div>
-      <div class="xp-controls">
-        <div class="btn">_</div>
-        <div class="btn">□</div>
-        <div class="btn close">✕</div>
-      </div>
-    </div>
-    <div class="xp-menubar">
-      <span class="menu-trigger" data-menu="file">File</span><span class="menu-trigger" data-menu="edit">Edit</span><span class="menu-trigger" data-menu="view">View</span><span class="menu-trigger" data-menu="favorites">Favorites</span><span class="menu-trigger" data-menu="help">Help</span>
-    </div>
-    <div class="hero-body">
-      <h2>WELCOME TO FEAR REALITY</h2>
-      <div class="hero-tagline">Something is wrong with this machine. Look around.</div>
-      <marquee style="margin-top:14px;">*** WELCOME TO THE OFFICIAL FEAR REALITY WEBSITE *** BEST VIEWED AT 1024x768 *** NOW ON TIKTOK AND YOUTUBE ***</marquee>
-      <div style="margin-top:10px;">
-        <span class="blink" style="color:#ff2b2b; font-weight:bold; font-size:12px; font-family:'Courier New',monospace;">● NEW</span>
-        <span style="font-size:12px; color:#aaa; font-family:'Courier New',monospace;"> screenshots added below</span>
-      </div>
-    </div>
-    <div class="status-bar">
-      <span>Ready</span>
-      <span class="cell">Zoom: 100%</span>
-      <span class="cell" style="margin-left:auto;">Internet</span>
-    </div>
+
+```
+  <div class="xp-controls">
+    <div class="btn">_</div>
+    <div class="btn">□</div>
+    <div class="btn close">✕</div>
+  </div>
+</div>
+
+<div class="xp-menubar">
+  <span class="menu-trigger" data-menu="file">File</span>
+  <span class="menu-trigger" data-menu="edit">Edit</span>
+  <span class="menu-trigger" data-menu="view">View</span>
+  <span class="menu-trigger" data-menu="favorites">Favorites</span>
+  <span class="menu-trigger" data-menu="help">Help</span>
+</div>
+
+<div class="hero-body">
+  <h2>WELCOME TO FEAR REALITY</h2>
+
+  <div class="hero-tagline">
+    Something is wrong with this machine. Look around.
+  </div>
+
+  <marquee style="margin-top:14px;">
+    *** WELCOME TO THE OFFICIAL FEAR REALITY WEBSITE *** BEST VIEWED AT 1024x768 *** NOW ON TIKTOK AND YOUTUBE ***
+  </marquee>
+
+  <div style="margin-top:10px;">
+    <span class="blink" style="color:#ff2b2b; font-weight:bold; font-size:12px; font-family:'Courier New',monospace;">
+      ● NEW
+    </span>
+
+    <span style="font-size:12px; color:#aaa; font-family:'Courier New',monospace;">
+      screenshots added below
+    </span>
+  </div>
+</div>
+
+<div class="status-bar">
+  <span>Ready</span>
+  <span class="cell">Zoom: 100%</span>
+  <span class="cell" style="margin-left:auto;">Internet</span>
+</div>
+```
+
   </div>
 
   <div class="xp-window" id="gallery">
@@ -596,39 +762,55 @@
         <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/images__4_-removebg-preview.png" alt="">
         <span>My Pictures - Fear Reality Screenshots</span>
       </div>
-      <div class="xp-controls">
-        <div class="btn">_</div>
-        <div class="btn">□</div>
-        <div class="btn close">✕</div>
-      </div>
+
+```
+  <div class="xp-controls">
+    <div class="btn">_</div>
+    <div class="btn">□</div>
+    <div class="btn close">✕</div>
+  </div>
+</div>
+
+<div class="xp-menubar">
+  <span class="menu-trigger" data-menu="file">File</span>
+  <span class="menu-trigger" data-menu="edit">Edit</span>
+  <span class="menu-trigger" data-menu="view">View</span>
+  <span class="menu-trigger" data-menu="tools">Tools</span>
+  <span class="menu-trigger" data-menu="help">Help</span>
+</div>
+
+<div class="xp-body tan">
+  <div class="gallery-grid">
+
+    <div class="gallery-item">
+      <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/Screenshot_2026-04-21_225227.png" alt="Fear Reality Screenshot 1">
+      <div class="gallery-caption">screenshot_2026-04-21_225227.png</div>
     </div>
-    <div class="xp-menubar">
-      <span class="menu-trigger" data-menu="file">File</span><span class="menu-trigger" data-menu="edit">Edit</span><span class="menu-trigger" data-menu="view">View</span><span class="menu-trigger" data-menu="tools">Tools</span><span class="menu-trigger" data-menu="help">Help</span>
+
+    <div class="gallery-item">
+      <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/Screenshot_2026-08-08_115133.png" alt="Fear Reality Screenshot 2">
+      <div class="gallery-caption">screenshot_2026-08-08_115133.png</div>
     </div>
-    <div class="xp-body tan">
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/Screenshot_2026-04-21_225227.png" alt="Fear Reality Screenshot 1">
-          <div class="gallery-caption">screenshot_2026-04-21_225227.png</div>
-        </div>
-        <div class="gallery-item">
-          <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/Screenshot_2026-08-08_115133.png" alt="Fear Reality Screenshot 2">
-          <div class="gallery-caption">screenshot_2026-08-08_115133.png</div>
-        </div>
-        <div class="gallery-item">
-          <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/lightfear.png" alt="Fear Reality Light Fear">
-          <div class="gallery-caption">lightfear.png</div>
-        </div>
-        <div class="gallery-item">
-          <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/FearRealityOfficialPic_2.png" alt="Fear Reality Official Art">
-          <div class="gallery-caption">fearrealityofficialpic_2.png</div>
-        </div>
-      </div>
+
+    <div class="gallery-item">
+      <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/lightfear.png" alt="Fear Reality Light Fear">
+      <div class="gallery-caption">lightfear.png</div>
     </div>
-    <div class="status-bar">
-      <span>4 object(s)</span>
-      <span class="cell" style="margin-left:auto;">My Computer</span>
+
+    <div class="gallery-item">
+      <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/FearRealityOfficialPic_2.png" alt="Fear Reality Official Art">
+      <div class="gallery-caption">fearrealityofficialpic_2.png</div>
     </div>
+
+  </div>
+</div>
+
+<div class="status-bar">
+  <span>4 object(s)</span>
+  <span class="cell" style="margin-left:auto;">My Computer</span>
+</div>
+```
+
   </div>
 
   <div class="xp-window socials-footer" id="links">
@@ -637,282 +819,409 @@
         <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/lightfear.png" alt="">
         <span>Internet Explorer - Favorite Links</span>
       </div>
-      <div class="xp-controls">
-        <div class="btn">_</div>
-        <div class="btn">□</div>
-        <div class="btn close">✕</div>
-      </div>
-    </div>
-    <div class="xp-menubar">
-      <span class="menu-trigger" data-menu="file">File</span><span class="menu-trigger" data-menu="edit">Edit</span><span class="menu-trigger" data-menu="view">View</span><span class="menu-trigger" data-menu="favorites">Favorites</span><span class="menu-trigger" data-menu="help">Help</span>
-    </div>
-    <div class="socials-body">
-      <a class="social-btn" href="https://discord.gg/MtNjfam7x" target="_blank" rel="noopener">
-        <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/images%20%283%29.png" alt="Discord">
-        <span>DISCORD</span>
-      </a>
-      <a class="social-btn" href="https://youtube.com/@fearreality_game?si=Xro1Gai5BVxkLs5V" target="_blank" rel="noopener">
-        <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/images%20%284%29.png" alt="YouTube">
-        <span>YOUTUBE</span>
-      </a>
-      <a class="social-btn" href="https://www.tiktok.com/@fearrealityofficial?_r=1&_t=ZS-98mSTFHvcmr" target="_blank" rel="noopener">
-        <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/download%20%283%29.png" alt="TikTok">
-        <span>TIKTOK</span>
-      </a>
-    </div>
-    <div style="text-align:center; padding-bottom:16px;">
-      <div class="visitor-counter">
-        <span>0</span><span>0</span><span>4</span><span>2</span><span>0</span><span>7</span>
-      </div>
-      <div style="font-size:10px; color:#666; margin-top:4px; font-family:'Courier New',monospace;">visitors to this page</div>
-    </div>
-    <div class="status-bar">
-      <span>Done</span>
-      <span class="cell" style="margin-left:auto;">🔒 Internet zone</span>
-    </div>
+
+```
+  <div class="xp-controls">
+    <div class="btn">_</div>
+    <div class="btn">□</div>
+    <div class="btn close">✕</div>
+  </div>
+</div>
+
+<div class="xp-menubar">
+  <span class="menu-trigger" data-menu="file">File</span>
+  <span class="menu-trigger" data-menu="edit">Edit</span>
+  <span class="menu-trigger" data-menu="view">View</span>
+  <span class="menu-trigger" data-menu="favorites">Favorites</span>
+  <span class="menu-trigger" data-menu="help">Help</span>
+</div>
+
+<div class="socials-body">
+
+  <a class="social-btn" href="https://discord.gg/MtNjfam7x" target="_blank" rel="noopener noreferrer">
+    <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/images%20%283%29.png" alt="Discord">
+    <span>DISCORD</span>
+  </a>
+
+  <a class="social-btn" href="https://youtube.com/@fearreality_game?si=Xro1Gai5BVxkLs5V" target="_blank" rel="noopener noreferrer">
+    <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/images%20%284%29.png" alt="YouTube">
+    <span>YOUTUBE</span>
+  </a>
+
+  <a class="social-btn" href="https://www.tiktok.com/@fearrealityofficial?_r=1&_t=ZS-98mSTFHvcmr" target="_blank" rel="noopener noreferrer">
+    <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/download%20%283%29.png" alt="TikTok">
+    <span>TIKTOK</span>
+  </a>
+
+</div>
+
+<div style="text-align:center; padding-bottom:16px;">
+  <div class="visitor-counter">
+    <span>0</span>
+    <span>0</span>
+    <span>4</span>
+    <span>2</span>
+    <span>0</span>
+    <span>7</span>
+  </div>
+
+  <div style="font-size:10px; color:#666; margin-top:4px; font-family:'Courier New',monospace;">
+    visitors to this page
+  </div>
+</div>
+
+<div class="status-bar">
+  <span>Done</span>
+  <span class="cell" style="margin-left:auto;">🔒 Internet zone</span>
+</div>
+```
+
   </div>
 
 </div>
 
 <div class="xp-modal-overlay" id="saveAsOverlay">
   <div class="xp-modal">
-    <div class="xp-titlebar">
-      <div class="ttl"><span>Save As</span></div>
-      <div class="xp-controls">
-        <div class="btn" id="saveAsClose">✕</div>
-      </div>
-    </div>
-    <div class="xp-modal-field">
-      <label for="saveAsName">File name:</label>
-      <input type="text" id="saveAsName" value="fear_reality.exe">
-    </div>
-    <div class="xp-modal-field">
-      <label for="saveAsType">Save as type:</label>
-      <select id="saveAsType">
-        <option>Application (*.exe)</option>
-        <option>All Files (*.*)</option>
-      </select>
-    </div>
-    <div class="xp-modal-actions">
-      <button id="saveAsSave">Save</button>
-      <button id="saveAsCancel">Cancel</button>
-    </div>
+
+```
+<div class="xp-titlebar">
+  <div class="ttl">
+    <span>Save As</span>
+  </div>
+
+  <div class="xp-controls">
+    <div class="btn" id="saveAsClose">✕</div>
+  </div>
+</div>
+
+<div class="xp-modal-field">
+  <label for="saveAsName">File name:</label>
+  <input type="text" id="saveAsName" value="fear_reality.exe">
+</div>
+
+<div class="xp-modal-field">
+  <label for="saveAsType">Save as type:</label>
+  <select id="saveAsType">
+    <option>Application (*.exe)</option>
+    <option>All Files (*.*)</option>
+  </select>
+</div>
+
+<div class="xp-modal-actions">
+  <button id="saveAsSave">Save</button>
+  <button id="saveAsCancel">Cancel</button>
+</div>
+```
+
   </div>
 </div>
 
 <div class="xp-toast" id="xpToast"></div>
 
-
 <div class="start-dropdown" id="startMenu"></div>
 
 <div class="taskbar">
+
   <div class="start-btn" id="startBtn">
-    <svg class="xp-logo" viewBox="0 0 20 20"><rect x="1" y="1" width="8" height="8" fill="#ff2b2b"/><rect x="11" y="1" width="8" height="8" fill="#8a8a8a"/><rect x="1" y="11" width="8" height="8" fill="#8a8a8a"/><rect x="11" y="11" width="8" height="8" fill="#ff2b2b"/></svg>
+    <svg class="xp-logo" viewBox="0 0 20 20">
+      <rect x="1" y="1" width="8" height="8" fill="#ff2b2b"/>
+      <rect x="11" y="1" width="8" height="8" fill="#8a8a8a"/>
+      <rect x="1" y="11" width="8" height="8" fill="#8a8a8a"/>
+      <rect x="11" y="11" width="8" height="8" fill="#ff2b2b"/>
+    </svg>
     start
   </div>
+
   <div class="taskbar-divider"></div>
-  <div class="taskbar-item" data-scroll="about">fear_reality_official.exe</div>
-  <div class="taskbar-item" data-scroll="gallery">My Pictures</div>
-  <div class="taskbar-item" data-scroll="links">Favorite Links</div>
-  <div class="tray" id="clock">12:00 PM</div>
+
+  <div class="taskbar-item" data-scroll="about">
+    fear_reality_official.exe
+  </div>
+
+  <div class="taskbar-item" data-scroll="gallery">
+    My Pictures
+  </div>
+
+  <div class="taskbar-item" data-scroll="links">
+    Favorite Links
+  </div>
+
+  <div class="tray" id="clock">
+    12:00 PM
+  </div>
+
 </div>
 
 <script>
-  function updateClock() {
-    const now = new Date();
-    let h = now.getHours();
-    const m = now.getMinutes().toString().padStart(2, '0');
-    const ampm = h >= 12 ? 'PM' : 'AM';
-    h = h % 12;
-    if (h === 0) h = 12;
-    document.getElementById('clock').textContent = h + ':' + m + ' ' + ampm;
-  }
-  updateClock();
-  setInterval(updateClock, 1000 * 30);
+function updateClock() {
+  const now = new Date();
+  let h = now.getHours();
+  const m = now.getMinutes().toString().padStart(2, '0');
+  const ampm = h >= 12 ? 'PM' : 'AM';
 
-  const DISCORD_URL = 'https://discord.gg/MtNjfam7x';
-  const YOUTUBE_URL = 'https://youtube.com/@fearreality_game?si=Xro1Gai5BVxkLs5V';
-  const TIKTOK_URL = 'https://www.tiktok.com/@fearrealityofficial?_r=1&_t=ZS-98mSTFHvcmr';
+  h = h % 12;
 
-  const menuData = {
-    file: [
-      { label: 'New', action: 'new' },
-      { label: 'Open...', action: 'toast:There is nothing else to open.' },
-      { sep: true },
-      { label: 'Save As...', action: 'saveas' },
-      { sep: true },
-      { label: 'Exit', action: 'toast:You cannot exit.' }
-    ],
-    edit: [
-      { label: 'Cut', action: 'toast:Nothing selected.' },
-      { label: 'Copy', action: 'toast:Nothing selected.' },
-      { label: 'Paste', action: 'toast:Clipboard is empty.' },
-      { sep: true },
-      { label: 'Select All', action: 'toast:There is nothing to select.' }
-    ],
-    view: [
-      { label: 'TikTok', action: 'link:' + TIKTOK_URL },
-      { label: 'YouTube', action: 'link:' + YOUTUBE_URL }
-    ],
-    favorites: [
-      { label: 'Discord', action: 'link:' + DISCORD_URL },
-      { label: 'YouTube', action: 'link:' + YOUTUBE_URL },
-      { label: 'TikTok', action: 'link:' + TIKTOK_URL }
-    ],
-    help: [
-      { label: 'Join our Discord', action: 'link:' + DISCORD_URL }
-    ],
-    tools: [
-      { label: 'Options...', action: 'toast:No options available.' }
-    ]
-  };
-
-  function buildDropdown(menuKey) {
-    const items = menuData[menuKey] || menuData.edit;
-    const dropdown = document.createElement('div');
-    dropdown.className = 'xp-dropdown';
-    items.forEach(it => {
-      if (it.sep) {
-        const sep = document.createElement('div');
-        sep.className = 'sep';
-        dropdown.appendChild(sep);
-      } else {
-        const el = document.createElement('div');
-        el.className = 'item';
-        el.dataset.action = it.action;
-        el.textContent = it.label;
-        dropdown.appendChild(el);
-      }
-    });
-    return dropdown;
+  if (h === 0) {
+    h = 12;
   }
 
-  function closeAllDropdowns() {
-    document.querySelectorAll('.xp-dropdown.open').forEach(d => d.classList.remove('open'));
-    document.querySelectorAll('.menu-trigger.active').forEach(t => t.classList.remove('active'));
-    document.getElementById('startMenu').classList.remove('open');
-  }
+  document.getElementById('clock').textContent = h + ':' + m + ' ' + ampm;
+}
 
-  function runAction(action) {
-    if (action === 'new') {
-      location.reload();
-    } else if (action === 'saveas') {
-      openSaveAsModal();
-    } else if (action.startsWith('link:')) {
-      window.open(action.slice(5), '_blank');
-    } else if (action.startsWith('toast:')) {
-      showToast(action.slice(6));
-    } else if (action.startsWith('scroll:')) {
-      const target = document.getElementById(action.slice(7));
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
+updateClock();
+setInterval(updateClock, 30000);
 
-  document.querySelectorAll('.menu-trigger').forEach(trigger => {
-    const dropdown = buildDropdown(trigger.dataset.menu);
-    trigger.appendChild(dropdown);
+const DISCORD_URL = 'https://discord.gg/MtNjfam7x';
+const YOUTUBE_URL = 'https://youtube.com/@fearreality_game?si=Xro1Gai5BVxkLs5V';
+const TIKTOK_URL = 'https://www.tiktok.com/@fearrealityofficial?_r=1&_t=ZS-98mSTFHvcmr';
 
-    dropdown.addEventListener('click', (e) => {
-      const item = e.target.closest('.item');
-      if (!item) return;
-      e.stopPropagation();
-      runAction(item.dataset.action);
-      closeAllDropdowns();
-    });
-
-    trigger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const wasOpen = dropdown.classList.contains('open');
-      closeAllDropdowns();
-      if (!wasOpen) {
-        dropdown.classList.add('open');
-        trigger.classList.add('active');
-      }
-    });
-  });
-
-  document.addEventListener('click', closeAllDropdowns);
-
-  const startMenuData = [
-    { label: 'About.exe', action: 'scroll:about' },
-    { label: 'My Pictures', action: 'scroll:gallery' },
-    { label: 'Favorite Links', action: 'scroll:links' },
+const menuData = {
+  file: [
+    { label: 'New', action: 'new' },
+    { label: 'Open...', action: 'toast:There is nothing else to open.' },
     { sep: true },
+    { label: 'Save As...', action: 'saveas' },
+    { sep: true },
+    { label: 'Exit', action: 'toast:You cannot exit.' }
+  ],
+
+  edit: [
+    { label: 'Cut', action: 'toast:Nothing selected.' },
+    { label: 'Copy', action: 'toast:Nothing selected.' },
+    { label: 'Paste', action: 'toast:Clipboard is empty.' },
+    { sep: true },
+    { label: 'Select All', action: 'toast:There is nothing to select.' }
+  ],
+
+  view: [
+    { label: 'TikTok', action: 'link:' + TIKTOK_URL },
+    { label: 'YouTube', action: 'link:' + YOUTUBE_URL }
+  ],
+
+  favorites: [
     { label: 'Discord', action: 'link:' + DISCORD_URL },
     { label: 'YouTube', action: 'link:' + YOUTUBE_URL },
-    { label: 'TikTok', action: 'link:' + TIKTOK_URL },
-    { sep: true },
-    { label: 'Shut Down...', action: 'toast:Nice try.' }
-  ];
+    { label: 'TikTok', action: 'link:' + TIKTOK_URL }
+  ],
 
-  const startMenu = document.getElementById('startMenu');
-  startMenuData.forEach(it => {
+  help: [
+    { label: 'Join our Discord', action: 'link:' + DISCORD_URL }
+  ],
+
+  tools: [
+    { label: 'Options...', action: 'toast:No options available.' }
+  ]
+};
+
+function buildDropdown(menuKey) {
+  const items = menuData[menuKey] || menuData.edit;
+  const dropdown = document.createElement('div');
+
+  dropdown.className = 'xp-dropdown';
+
+  items.forEach(it => {
     if (it.sep) {
       const sep = document.createElement('div');
       sep.className = 'sep';
-      startMenu.appendChild(sep);
+      dropdown.appendChild(sep);
     } else {
       const el = document.createElement('div');
+
       el.className = 'item';
       el.dataset.action = it.action;
       el.textContent = it.label;
-      startMenu.appendChild(el);
+
+      dropdown.appendChild(el);
     }
   });
 
-  startMenu.addEventListener('click', (e) => {
+  return dropdown;
+}
+
+function closeAllDropdowns() {
+  document.querySelectorAll('.xp-dropdown.open').forEach(d => {
+    d.classList.remove('open');
+  });
+
+  document.querySelectorAll('.menu-trigger.active').forEach(t => {
+    t.classList.remove('active');
+  });
+
+  document.getElementById('startMenu').classList.remove('open');
+}
+
+function runAction(action) {
+  if (action === 'new') {
+    location.reload();
+  } else if (action === 'saveas') {
+    openSaveAsModal();
+  } else if (action.startsWith('link:')) {
+    const url = action.slice(5);
+    window.open(url, '_blank', 'noopener,noreferrer');
+  } else if (action.startsWith('toast:')) {
+    showToast(action.slice(6));
+  } else if (action.startsWith('scroll:')) {
+    const target = document.getElementById(action.slice(7));
+
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  }
+}
+
+document.querySelectorAll('.menu-trigger').forEach(trigger => {
+  const dropdown = buildDropdown(trigger.dataset.menu);
+
+  trigger.appendChild(dropdown);
+
+  dropdown.addEventListener('click', e => {
     const item = e.target.closest('.item');
-    if (!item) return;
+
+    if (!item) {
+      return;
+    }
+
     e.stopPropagation();
+
     runAction(item.dataset.action);
     closeAllDropdowns();
   });
 
-  document.getElementById('startBtn').addEventListener('click', (e) => {
+  trigger.addEventListener('click', e => {
     e.stopPropagation();
-    const wasOpen = startMenu.classList.contains('open');
+
+    const wasOpen = dropdown.classList.contains('open');
+
     closeAllDropdowns();
-    if (!wasOpen) startMenu.classList.add('open');
-  });
 
-  document.querySelectorAll('.taskbar-item').forEach(ti => {
-    ti.addEventListener('click', (e) => {
-      e.stopPropagation();
-      closeAllDropdowns();
-      document.querySelectorAll('.taskbar-item.active').forEach(t => t.classList.remove('active'));
-      ti.classList.add('active');
-      const target = document.getElementById(ti.dataset.scroll);
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setTimeout(() => ti.classList.remove('active'), 400);
+    if (!wasOpen) {
+      dropdown.classList.add('open');
+      trigger.classList.add('active');
+    }
+  });
+});
+
+document.addEventListener('click', closeAllDropdowns);
+
+const startMenuData = [
+  { label: 'About.exe', action: 'scroll:about' },
+  { label: 'My Pictures', action: 'scroll:gallery' },
+  { label: 'Favorite Links', action: 'scroll:links' },
+  { sep: true },
+  { label: 'Discord', action: 'link:' + DISCORD_URL },
+  { label: 'YouTube', action: 'link:' + YOUTUBE_URL },
+  { label: 'TikTok', action: 'link:' + TIKTOK_URL },
+  { sep: true },
+  { label: 'Shut Down...', action: 'toast:Nice try.' }
+];
+
+const startMenu = document.getElementById('startMenu');
+
+startMenuData.forEach(it => {
+  if (it.sep) {
+    const sep = document.createElement('div');
+    sep.className = 'sep';
+    startMenu.appendChild(sep);
+  } else {
+    const el = document.createElement('div');
+
+    el.className = 'item';
+    el.dataset.action = it.action;
+    el.textContent = it.label;
+
+    startMenu.appendChild(el);
+  }
+});
+
+startMenu.addEventListener('click', e => {
+  const item = e.target.closest('.item');
+
+  if (!item) {
+    return;
+  }
+
+  e.stopPropagation();
+
+  runAction(item.dataset.action);
+  closeAllDropdowns();
+});
+
+document.getElementById('startBtn').addEventListener('click', e => {
+  e.stopPropagation();
+
+  const wasOpen = startMenu.classList.contains('open');
+
+  closeAllDropdowns();
+
+  if (!wasOpen) {
+    startMenu.classList.add('open');
+  }
+});
+
+document.querySelectorAll('.taskbar-item').forEach(ti => {
+  ti.addEventListener('click', e => {
+    e.stopPropagation();
+
+    closeAllDropdowns();
+
+    document.querySelectorAll('.taskbar-item.active').forEach(t => {
+      t.classList.remove('active');
     });
+
+    ti.classList.add('active');
+
+    const target = document.getElementById(ti.dataset.scroll);
+
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+
+    setTimeout(() => {
+      ti.classList.remove('active');
+    }, 400);
   });
+});
 
-  function showToast(text) {
-    const toast = document.getElementById('xpToast');
-    toast.textContent = text;
-    toast.classList.add('show');
-    clearTimeout(toast._timer);
-    toast._timer = setTimeout(() => toast.classList.remove('show'), 2600);
-  }
+function showToast(text) {
+  const toast = document.getElementById('xpToast');
 
-  function openSaveAsModal() {
-    document.getElementById('saveAsOverlay').classList.add('open');
-  }
+  toast.textContent = text;
+  toast.classList.add('show');
 
-  function closeSaveAsModal() {
-    document.getElementById('saveAsOverlay').classList.remove('open');
-  }
+  clearTimeout(toast._timer);
 
-  document.getElementById('saveAsClose').addEventListener('click', closeSaveAsModal);
-  document.getElementById('saveAsCancel').addEventListener('click', closeSaveAsModal);
-  document.getElementById('saveAsOverlay').addEventListener('click', (e) => {
-    if (e.target.id === 'saveAsOverlay') closeSaveAsModal();
-  });
-  document.getElementById('saveAsSave').addEventListener('click', () => {
+  toast._timer = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2600);
+}
+
+function openSaveAsModal() {
+  document.getElementById('saveAsOverlay').classList.add('open');
+}
+
+function closeSaveAsModal() {
+  document.getElementById('saveAsOverlay').classList.remove('open');
+}
+
+document.getElementById('saveAsClose').addEventListener('click', closeSaveAsModal);
+document.getElementById('saveAsCancel').addEventListener('click', closeSaveAsModal);
+
+document.getElementById('saveAsOverlay').addEventListener('click', e => {
+  if (e.target.id === 'saveAsOverlay') {
     closeSaveAsModal();
-    window.open(DISCORD_URL, '_blank');
-  });
+  }
+});
 
+document.getElementById('saveAsSave').addEventListener('click', () => {
+  closeSaveAsModal();
+  window.open(DISCORD_URL, '_blank', 'noopener,noreferrer');
+});
 </script>
 
 </body>
