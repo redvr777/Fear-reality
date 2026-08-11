@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fear Reality - Official Site</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Tahoma, "MS Sans Serif", Arial, sans-serif;
+    background-image: url('https://raw.githubusercontent.com/redvr777/Fear-reality/main/FearRealityOfficialPic_2.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  /* subtle darken overlay so windows are readable over the wallpaper */
+  #desktop {
+    min-height: 100vh;
+    width: 100%;
+    padding: 30px 24px 90px 24px;
+    background: rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ===== Desktop icons (top-left, classic XP style) ===== */
+  .desktop-icons {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    z-index: 5;
+  }
+  .d-icon {
+    width: 76px;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 2px #000;
+    font-size: 11px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .d-icon img {
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin: 0 auto 4px auto;
+    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.6));
+  }
+  .d-icon span {
+    background: rgba(0,0,0,0);
+    padding: 1px 3px;
+  }
+  .d-icon:hover span {
+    background: #1a3ba8;
+    outline: 1px dotted #fff;
+  }
+
+  /* ===== XP Window chrome ===== */
+  .xp-window {
+    width: 100%;
+    max-width: 780px;
+    margin: 14px 0;
+    border: 1px solid #0831d9;
+    border-radius: 8px 8px 3px 3px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.55);
+    background: #ece9d8;
+    overflow: hidden;
+  }
+  .xp-titlebar {
+    background: linear-gradient(180deg, #2e6fe4 0%, #1657d6 4%, #0d47c9 8%, #0c3fc9 40%, #1258e0 60%, #2a86f7 88%, #3a94ff 92%, #1e63d8 100%);
+    color: #fff;
+    font-weight: bold;
+    font-size: 13px;
+    padding: 4px 4px 5px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    border-radius: 6px 6px 0 0;
+  }
+  .xp-titlebar .ttl {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .xp-titlebar .ttl img { width: 16px; height: 16px; }
+  .xp-controls { display: flex; gap: 3px; }
+  .xp-controls .btn {
+    width: 21px; height: 20px;
+    background: linear-gradient(180deg,#4f9cff,#0a4fd6);
+    border: 1px solid #0836a3;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
+  }
+  .xp-controls .close { background: linear-gradient(180deg,#f79a8e,#e2371d); border-color: #a01c0c; }
+
+  .xp-menubar {
+    background: #ece9d8;
+    border-bottom: 1px solid #c8c4b0;
+    padding: 3px 6px;
+    font-size: 11px;
+    display: flex;
+    gap: 14px;
+    color: #000;
+  }
+  .xp-menubar span { padding: 1px 4px; }
+  .xp-menubar span:hover { background: #316ac5; color: #fff; border-radius: 2px; }
+
+  .xp-body {
+    background: #fff;
+    padding: 16px;
+    color: #111;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .xp-body.tan { background: #ece9d8; }
+
+  /* ===== Hero window content ===== */
+  .hero-body {
+    text-align: center;
+    background: #fff;
+    padding: 18px;
+  }
+  .hero-body img.title-img {
+    max-width: 100%;
+    height: auto;
+    image-rendering: -webkit-optimize-contrast;
+  }
+  .hero-tagline {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #333;
+  }
+
+  /* ===== Gallery ===== */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .gallery-item {
+    border: 2px inset #c9c6b8;
+    background: #000;
+    padding: 3px;
+  }
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .gallery-caption {
+    background: #ece9d8;
+    font-size: 11px;
+    text-align: center;
+    padding: 2px 0;
+    border-top: 1px solid #aaa;
+  }
+
+  /* ===== Links / buttons list ===== */
+  .link-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .xp-link-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(180deg,#fefefe,#e3e3e3);
+    border: 1px solid #888;
+    border-radius: 3px;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #000;
+    font-size: 13px;
+    font-weight: bold;
+    box-shadow: inset 0 1px 0 #fff;
+  }
+  .xp-link-btn:hover {
+    background: linear-gradient(180deg,#fff6cc,#ffe58f);
+    border-color: #c99a06;
+  }
+  .xp-link-btn:active {
+    background: #d9d9d9;
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.4);
+  }
+  .xp-link-btn .icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+
+  .status-bar {
+    background: #ece9d8;
+    border-top: 1px solid #fff;
+    font-size: 11px;
+    padding: 3px 8px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .status-bar .cell {
+    border: 1px inset #c9c6b8;
+    padding: 1px 8px;
+  }
+
+  marquee {
+    background: #000;
+    color: #0f0;
+    font-family: "Courier New", monospace;
+    font-size: 13px;
+    padding: 4px 0;
+    border: 1px inset #999;
+  }
+
+  .blink { animation: blinker 1s step-start infinite; }
+  @keyframes blinker { 50% { opacity: 0; } }
+
+  .visitor-counter {
+    display: inline-flex;
+    background: #000;
+    border: 2px inset #666;
+    padding: 3px 6px;
+    gap: 2px;
+    font-family: "Courier New", monospace;
+  }
+  .visitor-counter span {
+    background: #111;
+    color: #0f0;
+    padding: 1px 4px;
+    font-weight: bold;
+  }
+
+  /* ===== Taskbar ===== */
+  .taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 34px;
+    background: linear-gradient(180deg, #2a86f7 0%, #1a63e0 8%, #1050d6 50%, #0d3fc4 92%, #072f9e 100%);
+    border-top: 1px solid #4f9cff;
+    display: flex;
+    align-items: center;
+    z-index: 50;
+    box-shadow: 0 -2px 6px rgba(0,0,0,0.4);
+  }
+  .start-btn {
+    height: 26px;
+    margin: 3px 4px;
+    padding: 0 14px 0 6px;
+    background: linear-gradient(180deg,#7ed321,#4c9a0e 45%,#3f8a0a 55%,#2f6e07);
+    border-radius: 0 12px 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #fff;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 15px;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    box-shadow: 0 0 0 1px #2f6e07, inset 0 1px 0 rgba(255,255,255,0.5);
+    cursor: pointer;
+  }
+  .start-btn .xp-logo {
+    width: 20px; height: 20px;
+    display: inline-block;
+  }
+  .taskbar-divider {
+    width: 2px;
+    height: 24px;
+    background: rgba(255,255,255,0.3);
+    box-shadow: 1px 0 0 rgba(0,0,0,0.3);
+    margin: 0 4px;
+  }
+  .taskbar-item {
+    height: 26px;
+    margin: 3px 2px;
+    padding: 0 10px;
+    background: linear-gradient(180deg,#3a7fe6,#1c50c9);
+    border: 1px solid #0a2f8f;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #fff;
+    font-size: 12px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+  }
+  .tray {
+    margin-left: auto;
+    margin-right: 8px;
+    background: linear-gradient(180deg,#1258cf,#0a3aa8);
+    border-radius: 3px 0 0 3px;
+    color: #fff;
+    font-size: 11px;
+    padding: 4px 10px;
+    display: flex;
+    align-items: center;
+    height: 26px;
+    box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3);
+  }
+
+  @media (max-width: 600px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+    .desktop-icons { top: 8px; left: 8px; gap: 12px; }
+    .d-icon { width: 64px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="desktop-icons">
+  <a class="d-icon" href="#about"><img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/lightfear.png" alt="icon"><span>About.exe</span></a>
+  <a class="d-icon" href="#gallery"><img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/lightfear.png" alt="icon"><span>Gallery</span></a>
+  <a class="d-icon" href="#links"><img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/lightfear.png" alt="icon"><span>Follow_Us</span></a>
+  <a class="d-icon" href="https://discord.gg/MtNjfam7x" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/lightfear.png" alt="icon"><span>Discord</span></a>
+</div>
+
+<div id="desktop">
+
+  <!-- HERO / TITLE WINDOW -->
+  <div class="xp-window" id="about" style="max-width: 640px;">
+    <div class="xp-titlebar">
+      <div class="ttl">
+        <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/lightfear.png" alt="">
+        <span>fear_reality_official.exe</span>
+      </div>
+      <div class="xp-controls">
+        <div class="btn">_</div>
+        <div class="btn">□</div>
+        <div class="btn close">✕</div>
+      </div>
+    </div>
+    <div class="xp-menubar">
+      <span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Help</span>
+    </div>
+    <div class="hero-body">
+      <a href="https://discord.gg/MtNjfam7x" target="_blank" rel="noopener">
+        <img class="title-img" src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/Fear_Reality_Title_text_NEW.png" alt="Fear Reality - Join our Discord">
+      </a>
+      <div class="hero-tagline">Click the logo to join the official Discord server</div>
+      <marquee style="margin-top:12px;">*** WELCOME TO THE OFFICIAL FEAR REALITY WEBSITE *** BEST VIEWED AT 1024x768 *** NOW ON TIKTOK AND YOUTUBE ***</marquee>
+      <div style="margin-top:10px;">
+        <span class="blink" style="color:#c00; font-weight:bold; font-size:12px;">● NEW</span>
+        <span style="font-size:12px;"> screenshots added below!</span>
+      </div>
+    </div>
+    <div class="status-bar">
+      <span>Ready</span>
+      <span class="cell">Zoom: 100%</span>
+      <span class="cell" style="margin-left:auto;">Internet</span>
+    </div>
+  </div>
+
+  <!-- GALLERY WINDOW -->
+  <div class="xp-window" id="gallery">
+    <div class="xp-titlebar">
+      <div class="ttl">
+        <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/lightfear.png" alt="">
+        <span>My Pictures - Fear Reality Screenshots</span>
+      </div>
+      <div class="xp-controls">
+        <div class="btn">_</div>
+        <div class="btn">□</div>
+        <div class="btn close">✕</div>
+      </div>
+    </div>
+    <div class="xp-menubar">
+      <span>File</span><span>Edit</span><span>View</span><span>Tools</span><span>Help</span>
+    </div>
+    <div class="xp-body tan">
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/Screenshot_2026-04-21_225227.png" alt="Fear Reality Screenshot 1">
+          <div class="gallery-caption">screenshot_2026-04-21_225227.png</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/Screenshot_2026-08-08_115133.png" alt="Fear Reality Screenshot 2">
+          <div class="gallery-caption">screenshot_2026-08-08_115133.png</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/lightfear.png" alt="Fear Reality Light Fear">
+          <div class="gallery-caption">lightfear.png</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/FearRealityOfficialPic_2.png" alt="Fear Reality Official Art">
+          <div class="gallery-caption">fearrealityofficialpic_2.png</div>
+        </div>
+      </div>
+    </div>
+    <div class="status-bar">
+      <span>4 object(s)</span>
+      <span class="cell" style="margin-left:auto;">My Computer</span>
+    </div>
+  </div>
+
+  <!-- LINKS WINDOW -->
+  <div class="xp-window" id="links" style="max-width: 480px;">
+    <div class="xp-titlebar">
+      <div class="ttl">
+        <img src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/lightfear.png" alt="">
+        <span>Internet Explorer - Favorite Links</span>
+      </div>
+      <div class="xp-controls">
+        <div class="btn">_</div>
+        <div class="btn">□</div>
+        <div class="btn close">✕</div>
+      </div>
+    </div>
+    <div class="xp-menubar">
+      <span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Help</span>
+    </div>
+    <div class="xp-body">
+      <div class="link-list">
+        <a class="xp-link-btn" href="https://discord.gg/MtNjfam7x" target="_blank" rel="noopener">
+          <img class="icon" src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/lightfear.png" alt="">
+          Join our Discord server
+        </a>
+        <a class="xp-link-btn" href="https://youtube.com/@fearreality_game?si=Xro1Gai5BVxkLs5V" target="_blank" rel="noopener">
+          <img class="icon" src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/lightfear.png" alt="">
+          Watch us on YouTube
+        </a>
+        <a class="xp-link-btn" href="https://www.tiktok.com/@fearrealityofficial?_r=1&_t=ZS-98mSTFHvcmr" target="_blank" rel="noopener">
+          <img class="icon" src="https://raw.githubusercontent.com/redvr777/Fear-reality/main/lightfear.png" alt="">
+          Follow us on TikTok
+        </a>
+      </div>
+      <div style="margin-top:14px; text-align:center;">
+        <div class="visitor-counter">
+          <span>0</span><span>0</span><span>4</span><span>2</span><span>0</span><span>7</span>
+        </div>
+        <div style="font-size:10px; color:#555; margin-top:4px;">You are visitor number shown above</div>
+      </div>
+    </div>
+    <div class="status-bar">
+      <span>Done</span>
+      <span class="cell" style="margin-left:auto;">🔒 Internet zone</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- TASKBAR -->
+<div class="taskbar">
+  <div class="start-btn">
+    <svg class="xp-logo" viewBox="0 0 20 20"><rect x="1" y="1" width="8" height="8" fill="#ff5c2b"/><rect x="11" y="1" width="8" height="8" fill="#8dc63f"/><rect x="1" y="11" width="8" height="8" fill="#00a9e0"/><rect x="11" y="11" width="8" height="8" fill="#ffc20e"/></svg>
+    start
+  </div>
+  <div class="taskbar-divider"></div>
+  <div class="taskbar-item">fear_reality_official.exe</div>
+  <div class="taskbar-item">My Pictures</div>
+  <div class="taskbar-item">Internet Explorer</div>
+  <div class="tray" id="clock">12:00 PM</div>
+</div>
+
+<script>
+  function updateClock() {
+    const now = new Date();
+    let h = now.getHours();
+    const m = now.getMinutes().toString().padStart(2, '0');
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12;
+    if (h === 0) h = 12;
+    document.getElementById('clock').textContent = h + ':' + m + ' ' + ampm;
+  }
+  updateClock();
+  setInterval(updateClock, 1000 * 30);
+</script>
+
+</body>
+</html>
