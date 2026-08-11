@@ -507,6 +507,36 @@
     box-shadow: inset 1px 1px 2px rgba(0,0,0,0.5);
   }
 
+  .taskbar-item { cursor: pointer; }
+  .taskbar-item.active {
+    background: linear-gradient(180deg,#2a0505,#1a0101);
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.7);
+  }
+
+  .start-dropdown {
+    position: fixed;
+    bottom: 34px;
+    left: 4px;
+    min-width: 210px;
+    background: #1c1c1c;
+    border: 1px solid #4a0808;
+    box-shadow: 3px 3px 12px rgba(0,0,0,0.75);
+    z-index: 200;
+    padding: 4px 0;
+    font-family: "Courier New", monospace;
+    display: none;
+  }
+  .start-dropdown.open { display: block; }
+  .start-dropdown .item {
+    padding: 6px 16px;
+    font-size: 12px;
+    color: #ddd;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .start-dropdown .item:hover { background: #7a1414; color: #fff; }
+  .start-dropdown .sep { height: 1px; background: #3a0505; margin: 4px 0; }
+
   @media (max-width: 600px) {
     .gallery-grid { grid-template-columns: 1fr; }
     .desktop-icons { top: 8px; left: 8px; gap: 12px; }
@@ -644,24 +674,6 @@
 
 </div>
 
-<div class="xp-modal-overlay" id="genericModalOverlay">
-  <div class="xp-modal">
-    <div class="xp-titlebar">
-      <div class="ttl"><span id="genericModalTitle">Fear Reality</span></div>
-      <div class="xp-controls">
-        <div class="btn" id="genericModalClose">✕</div>
-      </div>
-    </div>
-    <div class="xp-modal-body">
-      <div class="glyph" id="genericModalGlyph">💀</div>
-      <div id="genericModalText">...</div>
-    </div>
-    <div class="xp-modal-actions">
-      <button id="genericModalOk">OK</button>
-    </div>
-  </div>
-</div>
-
 <div class="xp-modal-overlay" id="saveAsOverlay">
   <div class="xp-modal">
     <div class="xp-titlebar">
@@ -690,15 +702,18 @@
 
 <div class="xp-toast" id="xpToast"></div>
 
+
+<div class="start-dropdown" id="startMenu"></div>
+
 <div class="taskbar">
-  <div class="start-btn">
+  <div class="start-btn" id="startBtn">
     <svg class="xp-logo" viewBox="0 0 20 20"><rect x="1" y="1" width="8" height="8" fill="#ff2b2b"/><rect x="11" y="1" width="8" height="8" fill="#8a8a8a"/><rect x="1" y="11" width="8" height="8" fill="#8a8a8a"/><rect x="11" y="11" width="8" height="8" fill="#ff2b2b"/></svg>
     start
   </div>
   <div class="taskbar-divider"></div>
-  <div class="taskbar-item">fear_reality_official.exe</div>
-  <div class="taskbar-item">My Pictures</div>
-  <div class="taskbar-item">Favorite Links</div>
+  <div class="taskbar-item" data-scroll="about">fear_reality_official.exe</div>
+  <div class="taskbar-item" data-scroll="gallery">My Pictures</div>
+  <div class="taskbar-item" data-scroll="links">Favorite Links</div>
   <div class="tray" id="clock">12:00 PM</div>
 </div>
 
@@ -772,14 +787,43 @@
     return dropdown;
   }
 
+  function closeAllDropdowns() {
+    document.querySelectorAll('.xp-dropdown.open').forEach(d => d.classList.remove('open'));
+    document.querySelectorAll('.menu-trigger.active').forEach(t => t.classList.remove('active'));
+    document.getElementById('startMenu').classList.remove('open');
+  }
+
+  function runAction(action) {
+    if (action === 'new') {
+      location.reload();
+    } else if (action === 'saveas') {
+      openSaveAsModal();
+    } else if (action.startsWith('link:')) {
+      window.open(action.slice(5), '_blank');
+    } else if (action.startsWith('toast:')) {
+      showToast(action.slice(6));
+    } else if (action.startsWith('scroll:')) {
+      const target = document.getElementById(action.slice(7));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
   document.querySelectorAll('.menu-trigger').forEach(trigger => {
     const dropdown = buildDropdown(trigger.dataset.menu);
     trigger.appendChild(dropdown);
+
+    dropdown.addEventListener('click', (e) => {
+      const item = e.target.closest('.item');
+      if (!item) return;
+      e.stopPropagation();
+      runAction(item.dataset.action);
+      closeAllDropdowns();
+    });
+
     trigger.addEventListener('click', (e) => {
       e.stopPropagation();
       const wasOpen = dropdown.classList.contains('open');
-      document.querySelectorAll('.xp-dropdown.open').forEach(d => d.classList.remove('open'));
-      document.querySelectorAll('.menu-trigger.active').forEach(t => t.classList.remove('active'));
+      closeAllDropdowns();
       if (!wasOpen) {
         dropdown.classList.add('open');
         trigger.classList.add('active');
@@ -787,9 +831,60 @@
     });
   });
 
-  document.addEventListener('click', () => {
-    document.querySelectorAll('.xp-dropdown.open').forEach(d => d.classList.remove('open'));
-    document.querySelectorAll('.menu-trigger.active').forEach(t => t.classList.remove('active'));
+  document.addEventListener('click', closeAllDropdowns);
+
+  const startMenuData = [
+    { label: 'About.exe', action: 'scroll:about' },
+    { label: 'My Pictures', action: 'scroll:gallery' },
+    { label: 'Favorite Links', action: 'scroll:links' },
+    { sep: true },
+    { label: 'Discord', action: 'link:' + DISCORD_URL },
+    { label: 'YouTube', action: 'link:' + YOUTUBE_URL },
+    { label: 'TikTok', action: 'link:' + TIKTOK_URL },
+    { sep: true },
+    { label: 'Shut Down...', action: 'toast:Nice try.' }
+  ];
+
+  const startMenu = document.getElementById('startMenu');
+  startMenuData.forEach(it => {
+    if (it.sep) {
+      const sep = document.createElement('div');
+      sep.className = 'sep';
+      startMenu.appendChild(sep);
+    } else {
+      const el = document.createElement('div');
+      el.className = 'item';
+      el.dataset.action = it.action;
+      el.textContent = it.label;
+      startMenu.appendChild(el);
+    }
+  });
+
+  startMenu.addEventListener('click', (e) => {
+    const item = e.target.closest('.item');
+    if (!item) return;
+    e.stopPropagation();
+    runAction(item.dataset.action);
+    closeAllDropdowns();
+  });
+
+  document.getElementById('startBtn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const wasOpen = startMenu.classList.contains('open');
+    closeAllDropdowns();
+    if (!wasOpen) startMenu.classList.add('open');
+  });
+
+  document.querySelectorAll('.taskbar-item').forEach(ti => {
+    ti.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeAllDropdowns();
+      document.querySelectorAll('.taskbar-item.active').forEach(t => t.classList.remove('active'));
+      ti.classList.add('active');
+      const target = document.getElementById(ti.dataset.scroll);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(() => ti.classList.remove('active'), 400);
+    });
   });
 
   function showToast(text) {
@@ -799,22 +894,6 @@
     clearTimeout(toast._timer);
     toast._timer = setTimeout(() => toast.classList.remove('show'), 2600);
   }
-
-  function openGenericModal(title, text) {
-    document.getElementById('genericModalTitle').textContent = title;
-    document.getElementById('genericModalText').textContent = text;
-    document.getElementById('genericModalOverlay').classList.add('open');
-  }
-
-  function closeGenericModal() {
-    document.getElementById('genericModalOverlay').classList.remove('open');
-  }
-
-  document.getElementById('genericModalClose').addEventListener('click', closeGenericModal);
-  document.getElementById('genericModalOk').addEventListener('click', closeGenericModal);
-  document.getElementById('genericModalOverlay').addEventListener('click', (e) => {
-    if (e.target.id === 'genericModalOverlay') closeGenericModal();
-  });
 
   function openSaveAsModal() {
     document.getElementById('saveAsOverlay').classList.add('open');
@@ -834,20 +913,6 @@
     window.open(DISCORD_URL, '_blank');
   });
 
-  document.addEventListener('click', (e) => {
-    const item = e.target.closest('.xp-dropdown .item');
-    if (!item) return;
-    const action = item.dataset.action;
-    if (action === 'new') {
-      location.reload();
-    } else if (action === 'saveas') {
-      openSaveAsModal();
-    } else if (action.startsWith('link:')) {
-      window.open(action.slice(5), '_blank');
-    } else if (action.startsWith('toast:')) {
-      showToast(action.slice(6));
-    }
-  });
 </script>
 
 </body>
