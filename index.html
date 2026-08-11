@@ -12,6 +12,57 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/redvr777/Fear-reality/main/Fear_Reality_Title_text_NEW.png">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#7a0000">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+
+<style>
+  body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .field input, .field select, .field textarea, .copy-box, input, textarea, select, .allow-select {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+</style>
+
+<script>
+(function(){
+  document.addEventListener('contextmenu', function(e){
+    e.preventDefault();
+    return false;
+  });
+
+  document.addEventListener('keydown', function(e){
+    var k = e.key || '';
+    var kc = e.keyCode || 0;
+
+    if (k === 'F12' || kc === 123) {
+      e.preventDefault(); e.stopPropagation(); return false;
+    }
+
+    if (e.ctrlKey || e.metaKey) {
+      if (e.shiftKey && ['i','I','j','J','c','C','k','K','m','M','p','P'].indexOf(k) > -1) {
+        e.preventDefault(); e.stopPropagation(); return false;
+      }
+      if (e.altKey && ['i','I','j','J','c','C','u','U'].indexOf(k) > -1) {
+        e.preventDefault(); e.stopPropagation(); return false;
+      }
+      if (!e.shiftKey && !e.altKey && ['u','U','s','S','p','P','a','A'].indexOf(k) > -1) {
+        e.preventDefault(); e.stopPropagation(); return false;
+      }
+    }
+  }, true);
+
+  document.addEventListener('dragstart', function(e){
+    e.preventDefault();
+    return false;
+  });
+})();
+</script>
 
 <style>
   * { box-sizing: border-box; }
