@@ -590,10 +590,45 @@
   .start-dropdown .item:hover { background: #7a1414; color: #fff; }
   .start-dropdown .sep { height: 1px; background: #3a0505; margin: 4px 0; }
 
+  .yuza-credit {
+    position: fixed;
+    bottom: 42px;
+    right: 14px;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    text-decoration: none;
+  }
+  .yuza-credit img {
+    width: 46px;
+    height: 46px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 4px rgba(255,0,0,0.5));
+    display: block;
+  }
+  .yuza-credit span {
+    font-family: "Courier New", monospace;
+    font-size: 10px;
+    color: #ccc;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 2px #000;
+    background: rgba(0,0,0,0.35);
+    padding: 1px 5px;
+    border-radius: 2px;
+  }
+  .yuza-credit:hover span {
+    background: #7a1414;
+    color: #fff;
+  }
+
   @media (max-width: 600px) {
     .gallery-grid { grid-template-columns: 1fr; }
     .desktop-icons { top: 8px; left: 8px; gap: 12px; }
     .d-icon { width: 64px; }
+    .yuza-credit { bottom: 40px; right: 8px; }
+    .yuza-credit img { width: 36px; height: 36px; }
   }
 </style>
 </head>
@@ -726,6 +761,11 @@
   </div>
 
 </div>
+
+<a class="yuza-credit" href="https://yuza-developer.vercel.app/" target="_blank" rel="noopener">
+  <img src="https://raw.githubusercontent.com/redvr777/Yuza/main/7caf2a7b-aa83-4534-a7e2-c635a39a9d8c.png" alt="Yuza">
+  <span>MadeByYuza</span>
+</a>
 
 <div class="xp-modal-overlay" id="saveAsOverlay">
   <div class="xp-modal">
